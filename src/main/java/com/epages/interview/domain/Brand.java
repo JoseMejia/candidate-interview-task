@@ -14,6 +14,8 @@ import java.util.List;
 @Builder(toBuilder = true)
 @ToString(exclude = "products")
 @Entity
+@Table(name = "BRAND", indexes = @Index(columnList = "brandName", unique = true)
+)
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

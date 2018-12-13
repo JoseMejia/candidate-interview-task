@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static com.epages.interview.helpers.BrandHelper.a_brand;
+import static com.epages.interview.helpers.ProductHelper.Sale.ON_SALE;
+import static com.epages.interview.helpers.ProductHelper.a_product;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
@@ -33,13 +35,7 @@ public class ProductRepositoryTest extends InterviewApplicationTests {
         // Given
         final Brand adidas = brandRepository.save(a_brand("ADIDAS"));
 
-        final Product shirt = Product.builder()
-                .brand(adidas)
-                .name("Panama Tricot")
-                .onSale(true)
-                .price(12.00)
-                .build();
-        adidas.getProducts().add(shirt);
+        final Product shirt = a_product("Panama Tricot", 12.00, ON_SALE, adidas);
 
         // When
         productRepository.save(shirt);

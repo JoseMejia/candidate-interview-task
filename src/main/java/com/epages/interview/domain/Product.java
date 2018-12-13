@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
+@Table(name = "PRODUCT")
 public class Product {
 
     @Id
