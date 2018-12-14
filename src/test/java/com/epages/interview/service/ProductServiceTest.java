@@ -1,6 +1,7 @@
 package com.epages.interview.service;
 
 import com.epages.interview.domain.Brand;
+import com.epages.interview.exceptions.TechnicalException;
 import com.epages.interview.repository.BrandRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,5 +39,15 @@ public class ProductServiceTest {
         assertThat(brands).containsExactly(brandMock);
         verify(brandRepositoryMock).findBrandByOrderByBrandNameAsc();
         verifyNoMoreInteractions(brandRepositoryMock);
+    }
+
+    @Test(expected = TechnicalException.class)
+    public void shouldThrowTechnicalExceptionWhenUnableToRetrieveSortedBrandsWithProducts() {
+        // Given
+        when(brandRepositoryMock.findBrandByOrderByBrandNameAsc())
+                .thenThrow(new RuntimeException("computer says no!"));
+
+        // When
+        productService.retrieveSortedBrands();
     }
 }
