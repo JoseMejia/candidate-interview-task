@@ -3,9 +3,7 @@ package com.epages.interview.repository;
 import com.epages.interview.InterviewApplicationTests;
 import com.epages.interview.domain.Brand;
 import com.epages.interview.domain.Product;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,18 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
 public class BrandRepositoryTest extends InterviewApplicationTests {
-
-    @Autowired
-    private BrandRepository brandRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Before
-    public void setUp() {
-        brandRepository.deleteAll();
-        productRepository.deleteAll();
-    }
 
     @Test
     public void shouldPersistBrand() {

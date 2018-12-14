@@ -1,15 +1,13 @@
 package com.epages.interview.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @ToString(exclude = "products")
