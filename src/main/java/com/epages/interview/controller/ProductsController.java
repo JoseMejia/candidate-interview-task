@@ -5,6 +5,8 @@ import com.epages.interview.domain.Brand;
 import com.epages.interview.domain.Product;
 import com.epages.interview.representation.ProductRepresentation;
 import com.epages.interview.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/products")
 public class ProductsController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsController.class);
+
     private final ProductService productService;
 
     private final ProductRepresentationConverter productRepresentationConverter;
@@ -33,6 +37,7 @@ public class ProductsController {
 
     @GetMapping(value = "/brands", produces = "application/vnd.brands.api.v1+json")
     public Map<String, List<ProductRepresentation>> getSortedBrandsWithProducts() {
+        LOGGER.info("getSortedBrandsWithProducts");
         final List<Brand> brands = productService.retrieveSortedBrands();
         return brands.stream()
                 .collect(TreeMap::new,
